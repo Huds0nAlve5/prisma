@@ -56,14 +56,16 @@ async function main() {
     //    }
     //)
 
-    const deleteReceita = await prismaClient.receita.delete(
+    const conta = await prismaClient.conta.findFirst({
+        where: {
+            codigo: 1
+        }
+    })
+
+    const deleteReceitasComFiltro = await prismaClient.receita.deleteMany(          //deletar baseado no codigo da conta
         {
             where: {
-                codigo: prismaClient.conta.findMany({
-                    where: {
-                        codigo: 1
-                    }
-                })
+                conta_id: conta?.codigo
             }
         }
     )
@@ -73,6 +75,8 @@ async function main() {
     console.log(atualizar_conta)
     console.log(new_receita)
     console.log(receitaComConta)
+    console.log(conta?.codigo)
+    console.log(deleteReceitasComFiltro)
   }
   
 main()
