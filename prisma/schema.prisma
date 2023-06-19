@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Conta {
+  codigo Int @id @default(autoincrement())
+  conta String 
+  saldo Float
+  receitas Receita[]
+
+  @@map("contas")
+}
+
+model Receita {
+  codigo Int @id @default(autoincrement())
+  valor Float
+  data_inclusao DateTime @default(now())
+  conta Conta @relation(fields: [conta_id], references: [codigo])
+  conta_id Int
+}

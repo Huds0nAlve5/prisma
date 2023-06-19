@@ -1,0 +1,11 @@
+npm init -y
+npm install prisma typescript ts-node @types/node --save-dev
+npx tsc --init
+npx prisma
+npx prisma init
+
+DATABASE_URL="mysql://root:1234@localhost:3306/myfinances?schema=public"
+
+npx prisma migrate dev     -> executa o comando sql no banco de dados
+
+npx prisma studio
