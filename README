@@ -9,3 +9,5 @@ DATABASE_URL="mysql://root:1234@localhost:3306/myfinances?schema=public"
 npx prisma migrate dev     -> executa o comando sql no banco de dados
 
 npx prisma studio
+
+npx ts-node .\prismaClient.ts
