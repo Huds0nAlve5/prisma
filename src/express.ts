@@ -1,15 +1,21 @@
 import express from 'express'
 import { prismaClient } from './database/prismaClient'
+import bodyParser from 'body-parser'
 
 const app = express()
 
-app.get('/feed', async (req, res) => {
-  const posts = await prismaClient.conta.findMany({
-    where: { saldo: {gt: 0}}
-  })
-  res.json(posts)
+app.set('view engine', 'ejs')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.get('/', async (req, res) => {
+  res.render('index')
 })
 
+app.post('/cadastrar', async (req, res) => {
+  console.log(req.body)
+  res.redirect('/')
+})
 // app.post('/post', async (req, res) => {
 //   const { title, content, authorEmail } = req.body
 //   const post = await prismaClient.post.create({
