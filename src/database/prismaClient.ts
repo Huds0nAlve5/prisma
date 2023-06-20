@@ -97,8 +97,12 @@ async function main() {
         }
     })
 
+    const queryManual = await prismaClient.$queryRaw`select * from contas`
+
     console.log(saldoContaNu)
     console.log(saldoPorConta)
+
+    console.log(queryManual)
 
     // const deleteReceitasComFiltro = await prismaClient.receita.deleteMany(          //deletar baseado no codigo da conta
     //    {
